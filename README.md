@@ -57,7 +57,7 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 
 ### Orders
 - Number of rows: 5454
-- Number of columns:
+- Number of columns: 4
 - Columns
   - order_id - Num
   - customer_id - **FK** Num
