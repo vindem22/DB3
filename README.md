@@ -14,21 +14,21 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 ## Questions:
 -------------
 
-*1. Find order date of the customers  whose name begin with 'b' from Nur-Sultan, and who bought toys for cats or for dogs. 
-*2. What is the minimum, maximum, average order price in each city?
-*3. As an output we need a list of all orderids and their payments 
-*4. As an output we need a list of all customerid and the total payment received from them in the year 2020.
-*5. As an output we need a list of all customers who have in the year 2020, bought from category called “cats” but not bought from category called "dogs”.
-*6. How many orders are made by customers in each city who have cats and fish?
-*7. List all customers who bought toys for their cat and купалка for bird
-*8. Which foods are available for specific city?
-*9. Which toys are available for the specific kind of pet in particular city?
-*10. List all customers who bought food for the specific kind of pet by the particular manufaturer in total more than ... for particular date in the city with a specific name.
-*11. List all customers who bought / ordered N number of times.
-*12. How many products are available for a specific animal so that customers can order from their city?
-*13. The total sum of all goods for a specific animal.
-*14. For which animal has more products been sold to date?
-*15. Is there a buyer who ordered goods for all animals that we have in stock?
+ 1. Find order date of the customers  whose name begin with 'b' from Nur-Sultan, and who bought toys for cats or for dogs. 
+ 2. What is the minimum, maximum, average order price in each city?
+ 3. As an output we need a list of all orderids and their payments 
+ 4. As an output we need a list of all customerid and the total payment received from them in the year 2020.
+ 5. As an output we need a list of all customers who have in the year 2020, bought from category called “cats” but not bought from category called "dogs”.
+ 6. How many orders are made by customers in each city who have cats and fish?
+ 7. List all customers who bought toys for their cat and купалка for bird
+ 8. Which foods are available for specific city?
+ 9. Which toys are available for the specific kind of pet in particular city?
+ 10. List all customers who bought food for the specific kind of pet by the particular manufaturer in total more than ... for particular date in the city with a specific name.
+ 11. List all customers who bought / ordered N number of times.
+ 12. How many products are available for a specific animal so that customers can order from their city?
+ 13. The total sum of all goods for a specific animal.
+ 14. For which animal has more products been sold to date?
+ 15. Is there a buyer who ordered goods for all animals that we have in stock?
 
 ### UseCase Diagram
 -------------------
@@ -38,19 +38,19 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 ## Tables
 ---------
 
-*1. care_product
-*2. accessories
-*3. furniture
-*4. manifacturer
-*5. bags and houses
-*6. feeder
-*7. transportation
-*8. hygiene products
-*9. pet_dishes
-*10. consumable
-*11. customers
-*12. orders
-*13. cities
+1. care_product
+2. accessories
+3. furniture
+4. manifacturer
+5. bags and houses
+6. feeder
+7. transportation
+8. hygiene products
+9. pet_dishes
+10. consumable
+11. customers
+12. orders
+13. cities
 
 ## Datasets
 -----------
