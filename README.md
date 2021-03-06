@@ -80,3 +80,15 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 ---------
 
 ![alt text](https://github.com/vindem22/DB3/blob/main/BrothersInIT-ER.png?raw=true)
+
+### Explanation of ERD
+- Each entity(Catalog, Pet, ProductCategory, Product, Admin, Customer, Order, OrderDetails) contains primary key and unique keys.
+- Catolog table contains Pet names. Pet belongs to particular catalog. 
+- Each Pet has Product categories.
+- Product Categories have many products.
+- Admin can add a product to Product table.
+- Customer gives an order.
+- Each order has Order details.
+- Order details has Product.
+
+  
