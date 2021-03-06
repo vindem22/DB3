@@ -75,3 +75,8 @@ We chose PostgresSQL because it is a free database. It has good documentation an
   - gender - Str
   - date of birth - Datetime
   - city_id - Num
+
+## E/R diagram
+---------
+
+![alt text](https://github.com/vindem22/DB3/blob/main/BrothersInIT-ER.png?raw=true)
