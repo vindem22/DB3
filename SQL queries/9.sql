@@ -1,0 +1,1 @@
+SELECT * FROM product INNER JOIN product_category ON product_category.pc_categoryId = product.p_categoryId INNER JOIN pet ON pet.pt_petId = product_category.pc_petId WHERE product_category.pc_name = "Toys" GROUP BY c_cityName, pt_petName;

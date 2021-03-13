@@ -1,0 +1,1 @@
+SELECT * FROM product INNER JOIN order_details ON order_detail.od_productId = product.p_productId INNER JOIN orders ON order_details.od_orderId = orders.o_orderId INNER JOIN customer ON customer.c_customerId = orders.c_customerId WHERE pc_categoryName = "Food" GROUP BY c_city_name;
