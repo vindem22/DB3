@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM product INNER JOIN product_category ON product.p_categoryId = product_category.pc_categoryId INNER JOIN pet ON pet.pt_petId = product_category.pc_petId WHERE pc_categoryName = "Goods" AND pt_petName = "Dog" GROUP BY pt_petId;
