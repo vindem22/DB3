@@ -90,5 +90,3 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 - Customer gives an order.
 - Each order has Order details.
 - Order details has Product.
-
-  
