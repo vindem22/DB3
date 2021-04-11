@@ -1,0 +1,101 @@
+1)
+SELECT count(*) from customer, orders,orderDetails,product,product_category,pet
+        WHERE pc_categoryName = "купалка" AND pt_petName = "bird" OR pc_categoryName = "toys" AND pt_petName = "cat"
+        AND o_customerId = c_customerId 
+        AND od_orderId = od_orderId 
+        AND o_productId = p_productId 
+        AND p_categoryName = pc_name 
+        AND pc_name = pt_petName;
+
+2)
+SELECT count(*) from customer, orders,orderDetails,product,product_category,pet
+        WHERE pc_categoryName = "купалка" AND pt_petName = "bird" OR pc_categoryName = "toys" AND pt_petName = "cat" 
+        AND p_categoryName = pc_name 
+        AND pc_name = pt_petName
+        AND o_customerId = c_customerId 
+        AND od_orderId = od_orderId 
+        AND o_productId = p_productId;
+
+3)
+SELECT count(*) from customer, orders,orderDetails,product,product_category,pet
+        WHERE pc_categoryName = "купалка" AND pt_petName = "bird" OR pc_categoryName = "toys" AND pt_petName = "cat"
+        AND o_customerId = c_customerId 
+        AND od_orderId = od_orderId 
+        AND p_categoryName = pc_name 
+        AND pc_name = pt_petName
+        AND o_productId = p_productId;
+
+1.1)
+SELECT count(*) from customer, orders
+        WHERE o_customerId = c_customerId ;
+
+1.2)
+SELECT count(*) from orders,orderDetails
+        WHERE od_orderId = o_orderId ;
+
+1.3)
+SELECT count(*) from orders,product
+        WHERE o_productId = p_productId;
+
+1.4)
+SELECT count(*) from product,product_category
+        WHERE pc_categoryName = "купалка" OR pc_categoryName = "toys" 
+        AND p_categoryName = pc_name ;
+
+1.5)
+SELECT count(*) from product_category,pet
+        WHERE pc_categoryName = "купалка" AND pt_petName = "bird" OR pc_categoryName = "toys" AND pt_petName = "cat"
+        AND pc_name = pt_petName;
+
+((((orders ⋈ customer) ⋈ orderDetails) ⋈ product) ⋈ productCategory) ⋈ pet (365 + 2000 + 70 + 2 + 2 = 2439 tuples)
+
+
+2.1)
+SELECT count(*) from product_category,product
+        WHERE pc_categoryName = "купалка" OR pc_categoryName = "toys"
+        AND p_categoryName = pc_name;
+
+2.2)
+SELECT count(*) from product_category,pet
+        WHERE pc_categoryName = "купалка" AND pt_petName = "bird" OR pc_categoryName = "toys" AND pt_petName = "cat" 
+        AND pc_name = pt_petName;
+
+2.3)
+
+SELECT count(*) from customer, orders
+        WHERE o_customerId = c_customerId;
+
+2.4)
+SELECT count(*) from orders,orderDetails
+        WHERE  od_orderId = o_orderId;
+
+2.5)
+SELECT count(*) from orders, product
+        WHERE o_productId = p_productId;
+
+
+((((product ⋈ product_category) ⋈ orders) ⋈ customer) ⋈ orderDetails) ⋈ pet (35 + 5500 + 550 + 500 + 2 = 6587 tuples)
+
+3.1)
+SELECT count(*) from customer, orders
+        WHERE o_customerId = c_customerId ;
+
+3.2)
+SELECT count(*) from orders,orderDetails
+        WHERE  od_orderId = o_orderId;
+
+3.3)
+SELECT count(*) from product,product_category
+        WHERE pc_categoryName = "купалка" OR pc_categoryName = "toys" 
+        AND p_categoryName = pc_name; 
+
+3.4)
+SELECT count(*) from product_category,pet
+        WHERE pc_categoryName = "купалка" AND pt_petName = "bird" OR pc_categoryName = "toys" AND pt_petName = "cat"
+        AND pc_name = pt_petName;
+
+3.5)
+SELECT count(*) from orders, product
+        WHERE o_productId = p_productId;
+
+((((orders ⋈ customer) ⋈ orderDetails) ⋈ product) ⋈ product_category) ⋈ pet (5500 + 550 + 500 + 35 + 2 = 6587 tuples)

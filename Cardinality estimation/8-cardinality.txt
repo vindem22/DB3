@@ -1,0 +1,84 @@
+1)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer
+        WHERE pc_categoryName = "Food"
+        AND od_productId = p_productId 
+        AND od_orderId = o_orderId 
+        AND c_customerId = c_customerId;
+
+2)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer
+        WHERE pc_categoryName = "Food"
+        AND od_orderId = o_orderId 
+        AND od_productId = p_productId 
+        AND c_customerId = c_customerId;
+
+3)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer 
+        WHERE pc_categoryName = "Food"
+        AND c_customerId = c_customerId
+        AND od_productId = p_productId 
+        AND od_orderId = o_orderId;
+
+
+1.1)
+SELECT count(*) FROM product, orderDetails
+        WHERE od_productId = p_productId ;
+
+1.2)
+SELECT count(*) FROM Order, orderDetails
+        WHERE od_orderId = o_orderId ;
+
+1.3)
+SELECT count(*) FROM productCategory, customer 
+        WHERE pc_categoryName = "Food"
+        AND c_customerId = c_customerId;
+
+(((productCategory ⋈ product) ⋈ orderDetails) ⋈ orders) ⋈ customer (70 + 5500 + 5000 + 500  =  11 070 tuples)
+
+
+2.1)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer
+        WHERE pc_categoryName = "Food"
+        AND od_orderId = o_orderId 
+        AND od_productId = p_productId 
+        AND c_customerId = c_customerId;
+
+2.2)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer
+        WHERE pc_categoryName = "Food"
+        AND od_orderId = o_orderId 
+        AND od_productId = p_productId 
+        AND c_customerId = c_customerId;
+
+2.3)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer
+        WHERE pc_categoryName = "Food"
+        AND od_orderId = o_orderId 
+        AND od_productId = p_productId 
+        AND c_customerId = c_customerId;
+
+(((orderDetails ⋈ orders) ⋈ product) ⋈ customer (70 + 5500 + 5000 + 500  =  11 070 tuples)
+
+
+3.1)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer 
+        WHERE pc_categoryName = "Food"
+        AND c_customerId = c_customerId
+        AND od_productId = p_productId 
+        AND od_orderId = o_orderId;
+
+3.2)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer 
+        WHERE pc_categoryName = "Food"
+        AND c_customerId = c_customerId
+        AND od_productId = p_productId 
+        AND od_orderId = o_orderId;
+
+3.3)
+SELECT count(*) FROM product, productCategory, Order, orderDetails, customer 
+        WHERE pc_categoryName = "Food"
+        AND c_customerId = c_customerId
+        AND od_productId = p_productId 
+        AND od_orderId = o_orderId;
+
+(((customer ⋈ productCategory) ⋈ orderDetails) ⋈ product (450 + 5500 + 5000 + 70  =  11 020 tuples)
