@@ -1,0 +1,21 @@
+SELECT min("od_unitPrice"), max("od_unitPrice"), avg("od_unitPrice") FROM "orderDetails"
+       INNER JOIN "orders" ON "o_orderId" = "od_orderId"
+       INNER JOIN "customers" ON "c_customerId" = "o_customerId" GROUP by "c_cityId";
+
+"Planning Time: 0.163 ms"
+"Execution Time: 3.876 ms"
+
+"Planning Time: 0.156 ms"
+"Execution Time: 3.838 ms"
+
+"Planning Time: 0.159 ms"
+"Execution Time: 4.362 ms"
+
+"Planning Time: 0.226 ms"
+"Execution Time: 4.241 ms"
+
+"Planning Time: 0.165 ms"
+"Execution Time: 3.859 ms"
+ 
+
+AV = 4,209

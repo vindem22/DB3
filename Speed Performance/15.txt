@@ -1,0 +1,25 @@
+explain analyze SELECT "c_firstName","c_lastName" FROM "customers" 
+INNER JOIN "orders" ON "o_customerId" = "o_customerId"
+INNER JOIN "orderDetails" ON "od_orderId" = "o_orderId"
+INNER JOIN "products" ON "p_productId" = "od_productId"
+INNER JOIN "productCategory" ON "pc_categoryId" = "p_categoryId"
+GROUP BY "c_customerId", "pc_petId";
+
+
+"Planning Time: 0.366 ms"
+"Execution Time: 32.035 ms"
+
+"Planning Time: 0.429 ms"
+"Execution Time: 32.548 ms"
+
+"Planning Time: 0.322 ms"
+"Execution Time: 32.574 ms"
+
+"Planning Time: 0.356 ms"
+"Execution Time: 32.911 ms"
+
+"Planning Time: 0.311 ms"
+"Execution Time: 32.259 ms"
+
+
+ AV = 32,8222

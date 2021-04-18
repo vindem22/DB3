@@ -1,0 +1,18 @@
+SELECT "o_orderId", "c_cityId", count("o_orderId") FROM "orders" INNER JOIN "customers" ON "c_customerId" = "o_customerId" INNER JOIN "orderDetails" ON "o_orderId" = "od_orderId" INNER JOIN "products" ON "od_productId" = "p_productId" INNER JOIN "productCategory" ON "pc_categoryId" = "p_categoryId" INNER JOIN "pet" ON "pt_petId" = "pc_petId" WHERE "pt_petName" = 'Cats' OR "pt_petName" = 'Fishes' GROUP BY "c_cityId","o_orderId";
+
+"Planning Time: 0.412 ms"
+"Execution Time: 5.119 ms"
+
+"Planning Time: 0.398 ms"
+"Execution Time: 4.443 ms"
+
+"Planning Time: 0.455 ms"
+"Execution Time: 4.354 ms"
+
+"Planning Time: 0.386 ms"
+"Execution Time: 4.282 ms"
+
+"Planning Time: 0.421 ms"
+"Execution Time: 4.523 ms"
+
+AV = 4,9586
