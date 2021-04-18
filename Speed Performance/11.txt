@@ -1,0 +1,19 @@
+explain analyze SELECT "o_customerId", "c_firstName", "c_lastName" from orders INNER JOIN customers ON "c_customerId" = "o_customerId" GROUP BY "o_customerId","c_firstName", "c_lastName" HAVING count(*) > 20;
+
+
+"Planning Time: 0.376 ms"
+"Execution Time: 7.390 ms"
+
+"Planning Time: 0.567 ms"
+"Execution Time: 7.355 ms"
+
+"Planning Time: 0.163 ms"
+"Execution Time: 7.585 ms"
+
+"Planning Time: 0.175 ms"
+"Execution Time: 7.680 ms"
+
+"Planning Time: 0.144 ms"
+"Execution Time: 6.603 ms"
+
+AV = 7,6076

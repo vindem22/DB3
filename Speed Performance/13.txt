@@ -1,0 +1,19 @@
+explain analyze SELECT COUNT(*) FROM "products" INNER JOIN "productCategory" ON "products"."p_categoryId" = "productCategory"."pc_categoryId" INNER JOIN "pet" ON "pet"."pt_petId" = "productCategory"."pc_petId" WHERE "pc_name" = 'Feed' AND "pt_petName" = 'Dogs' GROUP BY "pt_petId";
+
+
+"Planning Time: 0.238 ms"
+"Execution Time: 4.007 ms"
+
+"Planning Time: 0.171 ms"
+"Execution Time: 3.513 ms"
+
+"Planning Time: 0.176 ms"
+"Execution Time: 4.126 ms"
+
+"Planning Time: 0.151 ms"
+"Execution Time: 3.439 ms"
+
+"Planning Time: 0.181 ms"
+"Execution Time: 4.238 ms"
+
+AV = 4,047
