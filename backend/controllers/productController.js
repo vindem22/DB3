@@ -2,12 +2,25 @@ const { PassThrough } = require("stream");
 
 const db = require("../db/index");
 
+const uuid = require('uuid');
+const path = require('path');
+const ApiError = require("../error/ApiError")
+const { next } = require("process");
+
 class ProductController {
-    async create(req, res) {
-        const {productName, description, price, productImage, manufacturer } = req.body
-        const query = 'INSERT INTO products("p_productName", p_description, p_price, "p_productImg", p_manufacturer) VALUES ($1, $2, $3, $4 , $5) RETURNING *';
-        const result = await db.query(query, [productName, description,price, productImage, manufacturer])
-        res.json(result.rows[0])
+    async create(req, res, next) {
+        try {
+            let fileName = uuid.v4() + ".jpg"
+            const {productName, description, price, manufacturer } = req.body
+            const {img} = req.files
+            const query = 'INSERT INTO products("p_productName", p_description, p_price, "p_productImg", p_manufacturer) VALUES ($1, $2, $3, $4 , $5) RETURNING *';
+            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const result = await db.query(query, [productName, description,price, fileName, manufacturer])
+            return res.json(result.rows[0])
+        }
+        catch(e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 
     async delete(req, res) {
@@ -24,8 +37,21 @@ class ProductController {
     }
     
     async getProducts(req, res) {
-        const products = await db.query('SELECT * FROM products')
-        res.json(products.rows);
+        let products;
+        let {manufacturer, limit, page} = req.query
+        page = page || 2
+        limit = limit || 20
+        let offset = page * limit - limit;
+        
+        if(!manufacturer) {
+            products = await db.query('SELECT * FROM products LIMIT $1 OFFSET $2', [limit, offset]);
+        }
+        else {
+            products = await db.query('SELECT * FROM products WHERE p_manufacturer = $1 LIMIT $2 OFFSET $3', [manufacturer, limit, offset]);
+        }
+
+        //products = await db.query('SELECT * FROM products limi');
+        return res.json(products.rows);
     }
 
     async getProduct(req, res) {
