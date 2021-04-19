@@ -1,17 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import Navbar from '../components/navbar';
-import ProductCard from '../components/productCard'
-import Container from '@material-ui/core/Container'
-import axios from 'axios'
+import {Row, Col} from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+import ProductCard from '../components/ProductCard';
+import axios from 'axios';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        height: 140,
+        width: 100,
+    },
+    control: {
+        padding: theme.spacing(2)
+    }
+}));
 
 export default function HomePage() {
-    const links = [
-        {title : 'Products', path:"/products"} , 
-        {title : 'About', path:"/about"}, 
-        {title : 'Contact', path: "/contact" }, 
-        {title : 'FAQ', path:"/faq"}
-    ]
+    const classes = useStyles();
     const [products, setProducts] = useState([]);
     useEffect(() => {
         axios.get("http://localhost:9890/api/product/")
@@ -22,20 +29,15 @@ export default function HomePage() {
     }, [setProducts])
     console.log(products[0])
 
-    const productsStyle = {
-        display : "flex",
-        justifyContent : "start",
-        flexWrap : "wrap",
-    }
-
     return (
         <div>
-            <Navbar links={links}></Navbar>
-            <Container style={productsStyle}>
+            <Row>
                 {products.map(product => (
-                    <ProductCard product={product}></ProductCard>
+                    <Col key={product.p_productId} sm={12} md={6} lg={4} xl={3}>
+                        <ProductCard product={product}/>
+                    </Col>
                 ))}
-            </Container>
+            </Row>
         </div>
     )
 }

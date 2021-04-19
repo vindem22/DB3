@@ -1,0 +1,7 @@
+export const ADMIN_ROUTE = '/admin'
+export const HOME_ROUTE = '/'
+export const PRODUCT_ROUTE = '/products'
+export const CART_ROUTE = '/cart'
+export const LOGIN_ROUTE = '/login'
+export const REGISTER_ROUTE = '/register'
+export const REACT_DEV_HOST = 'http://localhost:9890/'

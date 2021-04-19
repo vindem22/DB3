@@ -1,52 +1,27 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-
-export default function ProductCard(props) {
-    const product = props.product;
-    const imageLink = !product.p_productImg == null ? product.p_productImg : "https://images.saymedia-content.com/.image/t_share/MTc0MDcyMTYxNjQyNzUxNTU0/cat-food-and-health-issues-guide.jpg";
-    const useStyles = makeStyles({
-        root: {
-            flexBasis : "10rem",
-            flexGrow : 1,
-            maxWidth : 300,
-            margin : "1rem"
-        },
-        media : {
-            height : 140,
-        }
-    })
-    const classes = useStyles();
+import React from 'react'
+import { Card } from 'react-bootstrap'
+import {Link} from 'react-router-dom';
+import { REACT_DEV_HOST } from '../utils/constants';
+export default function productCard({product}) {
 
     return (
-        <>
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia className={classes.media} image={imageLink}/>
-                    <CardContent>
-                        <Typography variant="h5" component="h2">
-                            {product.p_productName}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {product.p_description}
-                        </Typography>
-                        <Typography variant="h6" color="secondary">
+        <div>
+            <Card className="my-4 p-3 rounded">
+                <Link to={`/products/${product.p_productId}`}>
+                    <Card.Img src={product.p_productImg === null ?  REACT_DEV_HOST + "defaultImg.jpg" : REACT_DEV_HOST + product.p_productImg} variant='top'/>
+                </Link>
+                <Card.Body>
+                    <a href={`/products/${product.p_productId}`}>
+                        <Card.Title as="div"><h5>{product.p_productName}</h5></Card.Title>
+                    </a>
+                    <Card.Text as="p">{product.p_description.length > 100 ? product.p_description.slice(0,100) + "..." : product.p_description}</Card.Text>
+                    <Card.Text as="h3">
+                        <div className="my-3">
                             {product.p_price}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">Buy</Button>
-                    <Button size="small" color="primary">Details</Button>
-                </CardActions>
+                        </div>
+                    </Card.Text>
+                </Card.Body>
             </Card>
-        </>
+        </div>
     )
 }
