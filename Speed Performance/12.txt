@@ -1,0 +1,18 @@
+SELECT "p_productName","pt_petName", count(*) FROM "products" INNER JOIN "productCategory" ON "pc_categoryId" = "p_categoryId" INNER JOIN "pet" ON "pt_petId" = "pc_petId" INNER JOIN "orderDetails" ON "p_productId" = "od_productId" INNER JOIN "orders" ON "o_orderId" = "o_orderId" INNER JOIN "customers" ON "o_customerId" = "c_customerId" INNER JOIN cities ON "c_cityId" = "cy_cityId" WHERE "pt_petName" = 'Dogs' AND "cy_cityName" = 'Almaty' GROUP BY "p_productName", "pt_petName"; 
+
+"Planning Time: 0.681 ms"
+"Execution Time: 14.739 ms"
+
+"Planning Time: 0.440 ms"
+"Execution Time: 12.950 ms"
+
+"Planning Time: 0.545 ms"
+"Execution Time: 13.013 ms"
+
+"Planning Time: 0.442 ms"
+"Execution Time: 13.885 ms"
+
+"Planning Time: 0.478 ms"
+"Execution Time: 14.039 ms"
+
+AV = 14,2424

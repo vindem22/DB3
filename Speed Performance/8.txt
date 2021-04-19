@@ -1,0 +1,19 @@
+SELECT "pt_petName" FROM "products" INNER JOIN "productCategory" ON "productCategory"."pc_categoryId" = "p_categoryId" INNER JOIN "pet" ON "pt_petId" = "productCategory"."pc_petId" WHERE "pc_name" = 'Toys' GROUP BY "pt_petName" HAVING count(*) > 50;
+
+
+"Planning Time: 0.233 ms"
+"Execution Time: 3.660 ms"
+
+"Planning Time: 0.806 ms"
+"Execution Time: 2.765 ms"
+
+"Planning Time: 0.236 ms"
+"Execution Time: 3.322 ms"
+
+"Planning Time: 0.174 ms"
+"Execution Time: 3.408 ms"
+
+"Planning Time: 0.171 ms"
+"Execution Time: 2.781 ms"
+
+AV = 3,5112
