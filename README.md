@@ -1,5 +1,17 @@
 # DB3
-## Description
+<h2>Content</h2>
+<ul align="left">
+ <li>
+   <a href="#description">1. Description</a> <br>
+ </li>
+ <li><a href="#questions">2. Questions</a><br></li>
+  <li><a href="#uc-diagram">3. Use Case Diagram</a><br></li>
+  <li> <a href="#datasets">4. Datasets</a><br></li>
+  <li> <a href="#tables">5. Tables</a></li>
+  <li> <a href="#er-diagram">6. ER Diagram</a></li>
+</ul>
+
+<h2 name="description"> Description </h2>
 Many people have pets with whom they spend a lot of time
 And over time, they become part of the family and therefore care for them for their owners becomes very important . However, not many people know how to properly care for them, especially people who have a pet for the first time. Our project is a pet store where everyone can order all the necessary goods for their pet: food, clothing, portable bags, toys, medicines, etc . Also in the "Articles" section, people can find useful tips and articles related to the care of their pets - this will improve help young and experienced owners care for their pets and establish a strong relationship with them.
 
@@ -16,7 +28,7 @@ Tech. Stack:
 
 We chose PostgresSQL because it is a free database. It has good documentation and is great for this purpose, as well as being a well-scalable database.
 
-## Questions:
+<h2 name="questions"> Questions</h2>:
 -------------
 
  1. Find order date of the customers  whose name begin with 'b' from Nur-Sultan, and who bought toys for cats or for dogs. 
@@ -35,13 +47,13 @@ We chose PostgresSQL because it is a free database. It has good documentation an
  14. For which animal has more products been sold to date?
  15. Is there a buyer who ordered goods for all animals that we have in stock?
 
-### UseCase Diagram
+<h2 name="uc-diagram"> UseCase Diagram </h2>
 -------------------
 
 ![alt text](https://github.com/vindem22/DB3/blob/main/ProjectX-UseCase-UML.png?raw=true)
 
 
-## Datasets
+<h2 name="datasets"> Datasets </h2>
 
 ### birds_delicacy
 - Format : csv
@@ -175,7 +187,7 @@ We chose PostgresSQL because it is a free database. It has good documentation an
   - p_price - product unit price
 
 
-## Tables
+<h2 name="tables"> Tables </h2>
 ---------
 
 1. admin - Adminstrators of website
@@ -270,7 +282,7 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 
 
 
-## E/R diagram
+<h2 name="er-diagram"> E/R diagram </h2>
 ---------
 
 ![alt text](https://github.com/vindem22/DB3/blob/main/BrothersInIT-ER.png?raw=true)
