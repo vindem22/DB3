@@ -7,8 +7,13 @@ And over time, they become part of the family and therefore care for them for th
 We are going to create an online store of products for pets . Here people can find the right products for their pets, place an order with delivery, or find interesting articles about pets and their care.
 
 User Interface: Web application 
-Programming language: Node JS/ Express JS
-Database Server:  PostgresSQL.
+Programming language(s): JavaScript, Python, SQL
+
+Tech. Stack: 
+- Frontend : React, React-bootstrap
+- Backend : NodeJS, ExpressJS
+- Database Server :  PostgresSQL.
+
 We chose PostgresSQL because it is a free database. It has good documentation and is great for this purpose, as well as being a well-scalable database.
 
 ## Questions:
@@ -38,24 +43,155 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 ## Tables
 ---------
 
-1. care_product
-2. accessories
-3. furniture
-4. manifacturer
-5. bags and houses
-6. feeder
-7. transportation
-8. hygiene products
-9. pet_dishes
-10. consumable
-11. customers
-12. orders
-13. cities
+1. admin - Adminstrators of website
+2. cart - Information about cart and it's owner
+3. cartProduct - All products in user's cart
+4. catalog - Product section
+5. cities - Cities which user can specify and where store works or deliveres its products 
+6. customers - Information about customers
+7. orderDetails - Detailed information related to order
+8. orders - All orders that were made 
+9. pet - Pets categories
+10. productCategory - Product categories
+11. products - All products 
+
 
 ## Datasets
+
+### birds_delicacy
+- Format : csv
+- Number of rows: 49
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### birds_feed
+- Format : csv
+- Number of rows: 49
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### cat_medications
+- Format : csv
+- Number of rows: 73
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### cat_products
+- Format : csv
+- Number of rows: 1513
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### cat_toys
+- Format : csv
+- Number of rows: 73
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### customers
+- Format : csv
+- Number of rows: 555
+- Number of columns: 7
+- Columns
+  - id - product image
+  - first_name - first name
+  - last_name - last name
+  - email	 - email address
+  - gender - gender
+  - date of birth - customer birth date
+  - city_id - unique city identificator
+
+### dog_feed
+- Format : csv
+- Number of rows: 650
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### dog_toys
+- Format : csv
+- Number of rows: 218
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### orders
+- Format : csv
+- Number of rows: 5455
+- Number of columns: 4
+- Columns
+  - order_id - product image
+  - customer_id - product title
+  - order_date - product unit price
+  - total_price - total order price
+
+### rodents_feed
+- Format : csv
+- Number of rows: 10
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### rodents_toys
+- Format : csv
+- Number of rows: 8
+- Number of columns: 5
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+  - p_description - product description
+  - p_categoryId - product category
+
+### products
+- Format : csv
+- Number of rows: 2433
+- Number of columns: 3
+- Columns
+  - p_productImg - product image
+  - p_productName - product title
+  - p_price - product unit price
+
 -----------
 
-### Orders
+### orders
 - Number of rows: 5454
 - Number of columns: 4
 - Columns
@@ -64,17 +200,75 @@ We chose PostgresSQL because it is a free database. It has good documentation an
   - order_date - Datetime
   - total_price - Num
 
-### Customers
-- Number of rows: 554
-- Number of columns: 6
+### cities
+- Number of rows: 14
+- Number of columns: 4
+- Columns
+  - cy_cityName - Num - city name
+  - cy_cityId - **FK** Num - unique city identificator
+  - cy_isDelivered - Boolean - Specifies whether delivery for city exist or not
+  - cy_district - Str - 
+
+### orderDetails
+- Number of rows: 10000
+- Number of columns: 4
+- Columns
+  - od_orderId - Num - unique order identificator
+  - od_id - **FK** Num - unique identificator
+  - od_productId - unique product identificator
+  - od_quantity - Num - count of items
+
+### customers
+- Number of rows: 558
+- Number of columns: 9
 - Columns 
-  - id - **PK** Num
-  - first_name - Str
-  - last_name - Str
-  - email - Str
-  - gender - Str
-  - date of birth - Datetime
-  - city_id - Num
+  - c_customerId - **PK** Num - unique customer identificator
+  - c_firstName - Str - first name
+  - c_lastName - Str - last name
+  - c_email - Str - email address
+  - c_gender - Str - gender
+  - c_birthDate - Datetime - birth date
+  - c_cityId - Num - unique city identificator 
+
+### admin
+- Number of rows: 1
+- Number of columns: 5
+- Columns
+  - a_adminId - **PK** Num - unique admin identificator 
+  - a_firstName - Str - first name
+  - a_lastName - Str - last name
+  - a_email - Str - email adress 
+  - a_password - Str - password
+
+### pet
+- Number of rows: 5
+- Number of columns: 3
+- Columns
+  - pt_petId - **PK** Num - unique identificator 
+  - pt_petName - Str - pet name
+  - pt_catalogId - Num - unique catalog identificator
+
+### products
+- Number of rows: 5064
+- Number of columns: 7
+- Columns
+  - p_productId - **PK** Num - unique category identificator 
+  - p_productName - Str - product title
+  - p_description - Str - product description
+  - p_price - Str - product unit price
+  - p_productImg - Str - product image
+  - p_manufacturer - Str - product manufacturer
+  - p_categoryId - Num - unique product category identificator
+
+### productCategory
+- Number of rows: 42
+- Number of columns: 3
+- Columns
+  - pc_categoryId - **PK** Num - unique category identificator 
+  - pc_name - Str - catalog name
+  - pc_petId - Num - unique pet identificator
+
+
 
 ## E/R diagram
 ---------
