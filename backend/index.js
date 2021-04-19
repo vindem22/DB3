@@ -3,6 +3,8 @@ const { Client } = require('pg');
 const router = require('./routes/index')
 const errorHandler = require('./middleware/ErrorHandlerMiddleware');
 const cors = require('cors')
+const fileUpload = require('express-fileupload')
+const path = require('path')
 
 const client = new Client({
     user: process.env.DB_USER,
@@ -19,8 +21,9 @@ const PORT = process.env.PORT || 9876;
 const server = express()
 server.use(cors())
 server.use(express.json())
+server.use(express.static(path.resolve(__dirname, 'static')))
+server.use(fileUpload({}))
 server.use('/api',router)
-// Error handler . The last middleware
 server.use(errorHandler)
 
 server.listen(PORT, () => {

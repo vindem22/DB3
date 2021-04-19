@@ -15,15 +15,15 @@ class OrderController {
     }
 
     async delete(req, res) {
-        const {id} = req.body
-        const remProduct = await db.query('DELETE FROM "orderDetails" WHERE id =  $1 RETUNRNING *', [id])
+        const {id} = req.params.id;
+        const remProduct = await db.query('DELETE FROM "orderDetails" WHERE "od_id" =  $1 RETUNRNING *', [id])
         res.json(remProduct.rows[0])
     } 
     
     async update(req, res) {
-        const {id} = req.params.id
-        const {customerId, totalPrice, orderDate} = req.body;
-        const remProduct = await db.query('UPDATE "orderDetails" SET "od_orderId" = $2, "od_quantity" = $3, "od_productId" = $4 WHERE "od_orderId" =  $1 RETUNRNING *', [id,customerId, totalPrice, orderDate])
+        const {id} = req.params.id;
+        const {orderId, quantity, productId} = req.body;
+        const remProduct = await db.query('UPDATE "orderDetails" SET "od_orderId" = $2, "od_quantity" = $3, "od_productId" = $4 WHERE "od_id" =  $1 RETUNRNING *', [id,orderId, quantity, productId])
         res.json(remProduct.rows[0])
     }
     

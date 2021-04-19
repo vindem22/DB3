@@ -22,10 +22,10 @@ export default function ProductPage({ match }) {
         <div>
             <Link className='btn btn-primary my-3' to='/'>Go back</Link>
             <Row>
-                <Col md={6}>
+                <Col md={4}>
                 <Card.Img src={product.p_productImg === null ? REACT_DEV_HOST + "defaultImg.jpg" : REACT_DEV_HOST + product.p_productImg} alt={product.p_productName} fluid/>
                 </Col>
-                <Col md={3}>
+                <Col md={5}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
                             <h2>{product.p_productName}</h2>

@@ -127,4 +127,5 @@ dist/
 tmp/
 temp/
 
+static/
 # End of https://www.toptal.com/developers/gitignore/api/node

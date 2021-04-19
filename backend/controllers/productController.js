@@ -42,6 +42,10 @@ class ProductController {
         page = page || 2
         limit = limit || 20
         let offset = page * limit - limit;
+        let pagesCount = await db.query('SELECT count(*) from products')
+        pagesCount = pagesCount.rows[0]
+        pagesCount = Math.round(parseInt(pagesCount.count) / limit);
+        //pages = Math.round(pages / limit)
         
         if(!manufacturer) {
             products = await db.query('SELECT * FROM products LIMIT $1 OFFSET $2', [limit, offset]);
@@ -49,6 +53,8 @@ class ProductController {
         else {
             products = await db.query('SELECT * FROM products WHERE p_manufacturer = $1 LIMIT $2 OFFSET $3', [manufacturer, limit, offset]);
         }
+        products.rows.push({pagesCount : pagesCount})
+        
 
         //products = await db.query('SELECT * FROM products limi');
         return res.json(products.rows);
