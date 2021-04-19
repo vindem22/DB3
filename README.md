@@ -40,21 +40,6 @@ We chose PostgresSQL because it is a free database. It has good documentation an
 
 ![alt text](https://github.com/vindem22/DB3/blob/main/ProjectX-UseCase-UML.png?raw=true)
 
-## Tables
----------
-
-1. admin - Adminstrators of website
-2. cart - Information about cart and it's owner
-3. cartProduct - All products in user's cart
-4. catalog - Product section
-5. cities - Cities which user can specify and where store works or deliveres its products 
-6. customers - Information about customers
-7. orderDetails - Detailed information related to order
-8. orders - All orders that were made 
-9. pet - Pets categories
-10. productCategory - Product categories
-11. products - All products 
-
 
 ## Datasets
 
@@ -189,7 +174,22 @@ We chose PostgresSQL because it is a free database. It has good documentation an
   - p_productName - product title
   - p_price - product unit price
 
------------
+
+## Tables
+---------
+
+1. admin - Adminstrators of website
+2. cart - Information about cart and it's owner
+3. cartProduct - All products in user's cart
+4. catalog - Product section
+5. cities - Cities which user can specify and where store works or deliveres its products 
+6. customers - Information about customers
+7. orderDetails - Detailed information related to order
+8. orders - All orders that were made 
+9. pet - Pets categories
+10. productCategory - Product categories
+11. products - All products 
+
 
 ### orders
 - Number of rows: 5454
