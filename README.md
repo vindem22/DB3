@@ -12,8 +12,7 @@
 </ul>
 
 - DEMO VIDEO LINK BELOW!<br>
-<strong><a href='https://www.youtube.com/channel/UC2cWuh-AemTz5EsF48HhTDA'>Link to demo</a></strong>
-
+<strong><a href='https://www.youtube.com/watch?v=_PDf9H_iQMY'>Link to demo</a></strong>
 
 <h2 name="description"> Description </h2>
 Many people have pets with whom they spend a lot of time
