@@ -11,6 +11,10 @@
   <li> <a href="#er-diagram">6. ER Diagram</a></li>
 </ul>
 
+- DEMO VIDEO LINK BELOW!<br>
+<strong><a href='https://www.youtube.com/channel/UC2cWuh-AemTz5EsF48HhTDA'>Link to demo</a></strong>
+
+
 <h2 name="description"> Description </h2>
 Many people have pets with whom they spend a lot of time
 And over time, they become part of the family and therefore care for them for their owners becomes very important . However, not many people know how to properly care for them, especially people who have a pet for the first time. Our project is a pet store where everyone can order all the necessary goods for their pet: food, clothing, portable bags, toys, medicines, etc . Also in the "Articles" section, people can find useful tips and articles related to the care of their pets - this will improve help young and experienced owners care for their pets and establish a strong relationship with them.
