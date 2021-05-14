@@ -5,11 +5,12 @@ const ApiError = require("../error/ApiError")
 const db = require("../db/index");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
-const jwtGenerator = (id, email) => {
+const jwtGenerator = (id, email, role) => {
     return jwt.sign(
         {
             id : id, 
-            email : email
+            email : email,
+            role : role
         },
         process.env.SECRET_KEY, 
         {expiresIn : "24h"}
@@ -18,43 +19,59 @@ const jwtGenerator = (id, email) => {
 
 class UserController {
     async registration(req, res, next) {
-        const {firstName, lastName, email, password } = req.body;
-        const id = req.params.id;
-        
+        const {firstName, lastName, email, password, role} = req.body;
+        console.log(email);
+        console.log(lastName);
+        console.log(firstName);
         if(!email || !password) {
             next(ApiError.badRequest("Некорректный email или пароль"))
         }
 
-        const isUserExist = await db.query("SELECT * FROM customers WHERE c_email = $1", [email])
+        const isUserExist = await db.query("SELECT * FROM users WHERE u_email = $1", [email])
     
         if(isUserExist.rowCount > 0) {
             return next(ApiError.badRequest("Пользователь с таким именем уже существует"))
         }
         const hashedPassword = await bcrypt.hash(password, 5);
-        const newUser = await db.query('INSERT INTO customers(c_email, c_password, "c_firstName" , "c_lastName") VALUES($1, $2, $3,$4)', [email, hashedPassword, firstName, lastName]);
-        const token = jwtGenerator(id, email)
+        const newUser = await db.query('INSERT INTO users(u_email, u_password, "u_firstName" , "u_lastName", u_role) VALUES($1, $2, $3,$4, $5) RETURNING *', [email, hashedPassword, firstName, lastName, role]);
+        
+        const userId = newUser.rows[0].u_userId;
+        const newCustomer = await db.query('INSERT INTO "customers"("c_userId") VALUES($1)',[userId]);   
+        const newCart = await db.query('INSERT INTO cart(ct_customerId) VALUES($1)', [userId]);
+
+        const token = jwtGenerator(userId, email, role);
 
         return res.json({token})
     }
 
     async auth(req, res, next) {
         const {email , password} = req.body;
-        const user = await db.query('SELECT * FROM customers WHERE c_email = $1', [email])
+        const user = await db.query('SELECT * FROM users WHERE u_email = $1', [email])
         if(user.rowCount == 0){
-            return  next(ApiError.internal('Пользователь не найден.'))
+            return next(ApiError.internal('Пользователь не найден.'))
         }
-        const userPassword = user.rows[0].c_password;
-        const userId = user.rows[0].c_customerId;
+        console.log(user)
+        const userPassword = user.rows[0].u_password;
+        const userId = user.rows[0].u_customerId;
+        console.log(userPassword, userId)
         let isPasswordValid = bcrypt.compareSync(password, userPassword)
         if(!isPasswordValid){
             return next(ApiError.internal('Вы ввели неправильный пароль или почту'))
         }
-        const token = jwtGenerator(userId ,email )
+        const token = jwtGenerator(userId ,email)
+
         return res.json({token})
     } 
+
     async getUsers(req, res) {
-        const users = await db.query('SELECT * FROM customers')
+        const users = await db.query('SELECT * FROM users LIMIT 20')
         res.json(users.rows);
+    }
+
+    async getUser(req, res) {
+        const {id} = req.params.id;
+        const users = await db.query('SELECT * FROM users WHERE u_userId = $1', [id])
+        res.json(users.rows[0]);
     }
 
     async updateUser(req, res){
@@ -64,7 +81,7 @@ class UserController {
 
     async deleteUser(req, res) {
         const id = req.params.id;
-        const user = await db.query('DELETE FROM customers where id = $1', [id]);
+        const user = await db.query('DELETE FROM users where u_userId = $1', [id]);
         res.json(user.rows[0])
     }
 

@@ -10,7 +10,7 @@ class OrderController {
             "o_customerId", "o_totalPrice", "o_orderDate")
             VALUES ($1, $2, $3)
         `;
-        const result = await db.query(query, [id])
+        const result = await db.query(query, [customerId, totalPrice, o_orderDate])
         res.json(result.rows[0])
     }
 

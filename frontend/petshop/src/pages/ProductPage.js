@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom';
-import {Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap';
+import {Container, Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap';
 import axios from 'axios';
 import { REACT_DEV_HOST } from '../utils/constants';
 
@@ -19,11 +19,11 @@ export default function ProductPage({ match }) {
     console.log("This is product",product)
 
     return (
-        <div>
+        <Container>
             <Link className='btn btn-primary my-3' to='/'>Go back</Link>
             <Row>
-                <Col md={4}>
-                <Card.Img src={product.p_productImg === null ? REACT_DEV_HOST + "defaultImg.jpg" : REACT_DEV_HOST + product.p_productImg} alt={product.p_productName} fluid/>
+                <Col md={4} style={{boxShadow : "0 0 5px rgba(0,0,0,0.1)"}}>
+                    <Card.Img src={product.p_productImg === null ? REACT_DEV_HOST + "defaultImg.jpg" : REACT_DEV_HOST + product.p_productImg} alt={product.p_productName} fluid/>
                 </Col>
                 <Col md={5}>
                     <ListGroup variant='flush'>
@@ -66,6 +66,6 @@ export default function ProductPage({ match }) {
                     </Card>
                 </Col>
             </Row>
-        </div>
+        </Container>
     )
 }

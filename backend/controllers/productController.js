@@ -38,20 +38,30 @@ class ProductController {
     
     async getProducts(req, res) {
         let products;
-        let {manufacturer, limit, page} = req.query
-        page = page || 2
-        limit = limit || 20
+        let conditions;
+        let joins;
+        let {manufacturer, pet, productCategory, limit, page} = req.query;
+        page = page || 2;
+        limit = limit || 20;
         let offset = page * limit - limit;
         let pagesCount = await db.query('SELECT count(*) from products')
         pagesCount = pagesCount.rows[0]
         pagesCount = Math.round(parseInt(pagesCount.count) / limit);
         //pages = Math.round(pages / limit)
-        
-        if(!manufacturer) {
-            products = await db.query('SELECT * FROM products LIMIT $1 OFFSET $2', [limit, offset]);
+        console.log(req.query)
+        console.log('pet', pet)
+        if(pet && !productCategory) {
+            console.log('pet')
+            products = await db.query('select * from "products", "productCategory", "pet" where "p_categoryId" = "pc_categoryId" AND "pc_petId" = "pt_petId" AND "pt_petName" = $1 LIMIT $2 OFFSET $3', [pet, limit, offset]);
+        }
+        else if(productCategory && !pet) {
+            products = await db.query('select * from "products", "productCategory" where "p_categoryId" = "pc_categoryId" AND "pc_name" = $1 LIMIT $2 OFFSET $3', [productCategory, limit, offset]);
+        }
+        else if(productCategory && pet) {
+            products = await db.query('select * from "products", "productCategory", "pet" where "p_categoryId" = "pc_categoryId" AND "pc_petId" = "pt_petId" AND "pt_petName" = $1 AND "pc_name" = $2 LIMIT $3 OFFSET $4', [pet, productCategory,limit, offset]);
         }
         else {
-            products = await db.query('SELECT * FROM products WHERE p_manufacturer = $1 LIMIT $2 OFFSET $3', [manufacturer, limit, offset]);
+            products = await db.query('SELECT * FROM products LIMIT $1 OFFSET $2', [limit, offset]);
         }
         products.rows.push({pagesCount : pagesCount})
         
